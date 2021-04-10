@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { API_KEY, axiosApi } from '../axios-api';
+import Main from '../components/Main';
+import Sidebar from '../components/Sidebar';
 
 const AppWrapper = styled.div`
   display: flex
@@ -12,7 +14,14 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [querykeyWord, setQuerykeyWord] = useState();
   const [queryPage, setQueryPage] = useState(1);
-  const [movieID, setMovieID] = useState();
+  const [movieID, setMovieID] = useState('tt4244162');
+
+  const handleOnSearch = (value) => {
+    setQuerykeyWord(value);
+  };
+  const handleOnCancel = () => {
+    setQuerykeyWord('');
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -52,10 +61,13 @@ const App = () => {
   }, [querykeyWord]);
 
   console.log('xxxx', movieData);
+
   return (
     <AppWrapper>
-      <div>siderbar</div>
-      <div>main</div>
+      <Sidebar
+        onSearch={handleOnSearch} onCancel={handleOnCancel} querykeyWord={querykeyWord}
+        movies={movieData.moviesResults} />
+      <Main movieID={movieID} />
     </AppWrapper>
   );
 };
