@@ -8,19 +8,21 @@ import { API_KEY, axiosApi } from '../axios-api';
 import Loader from '../components/Loader';
 import MovieList from '../components/MovieList';
 
+const listPerPage = 10;
+
 const Sidebar = ({
   onMovieSelected, onKeywords,
 }) => {
-  const listPerPage = 10;
-
-  const [movieData, setMovieData] = useState({ moviesResults: [], totalResults: 0 });
+  const [movieData, setMovieData] = useState({ moviesResults: [], moviesResultsAmount: 0 });
   const [searchError, setSearchError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [querykeyWord, setQuerykeyWord] = useState('');
   const [queryPage, setQueryPage] = useState(1);
 
-  const showPagination = movieData.totalResults > listPerPage;
-  const totalPageResult = Math.ceil(movieData.totalResults / listPerPage);
+  const { moviesResults, moviesResultsAmount } = movieData;
+
+  const showPagination = moviesResultsAmount > listPerPage;
+  const totalPageResult = Math.ceil(moviesResultsAmount / listPerPage);
 
   const handleOnSearch = (value) => {
     setQuerykeyWord(value);
@@ -39,7 +41,7 @@ const Sidebar = ({
   useEffect(() => {
     setLoading(true);
     setSearchError(null);
-    setMovieData({ moviesResults: [], totalResults: 0 });
+    setMovieData({ moviesResults: [], moviesResultsAmount: 0 });
 
     if (querykeyWord) {
       axiosApi.get(`?s=${querykeyWord}&apikey=${API_KEY}&page=${queryPage}`)
@@ -54,7 +56,7 @@ const Sidebar = ({
           } else {
             setMovieData({
               moviesResults: Search,
-              totalResults,
+              moviesResultsAmount: totalResults,
             });
           }
           setLoading(false);
@@ -67,7 +69,7 @@ const Sidebar = ({
 
   useEffect(() => {
     if (!querykeyWord) {
-      setMovieData({ moviesResults: [], totalResults: 0 });
+      setMovieData({ moviesResults: [], moviesResultsAmount: 0 });
       setSearchError('');
       setLoading(false);
     }
@@ -86,7 +88,7 @@ const Sidebar = ({
         closeIcon={<CloseIcon data-testid="close-icon" />}
         autoFocus />
 
-      {movieData?.moviesResults?.length === 0 && !querykeyWord && !searchError && !loading && (
+      {moviesResults?.length === 0 && !querykeyWord && !searchError && !loading && (
         <Typography>
           Start typing to search for movies
         </Typography>
@@ -100,7 +102,7 @@ const Sidebar = ({
       {loading && <Loader />}
       {!searchError && !loading && (
         <MovieList
-          movies={movieData.moviesResults}
+          movies={moviesResults}
           movieSelected={handleMovieSelected} />
       )}
 
