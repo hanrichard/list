@@ -8,7 +8,7 @@ import React from 'react';
 export default function Pagination({
   onClickPagination,
   currentPage,
-  totalPaginatedPages,
+  totalPaginatedPagesNum,
 }) {
   const handlePreviousClick = () => {
     if (currentPage > 1) {
@@ -17,7 +17,7 @@ export default function Pagination({
   };
 
   const handleNextClick = () => {
-    if (currentPage < totalPaginatedPages) {
+    if (currentPage < totalPaginatedPagesNum) {
       onClickPagination(currentPage + 1);
     }
   };
@@ -37,7 +37,7 @@ export default function Pagination({
             {' '}
             {currentPage}
             /
-            {totalPaginatedPages}
+            {totalPaginatedPagesNum}
           </Typography>
         </Grid>
         <Grid item xs>
@@ -55,11 +55,11 @@ export default function Pagination({
 Pagination.defaultProps = {
   onClickPagination: () => {},
   currentPage: 0,
-  totalPaginatedPages: 0,
+  totalPaginatedPagesNum: 0,
 };
 
 Pagination.propTypes = {
   onClickPagination: PropTypes.func,
   currentPage: PropTypes.number,
-  totalPaginatedPages: PropTypes.number,
+  totalPaginatedPagesNum: PropTypes.number,
 };

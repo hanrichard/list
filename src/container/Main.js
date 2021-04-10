@@ -27,10 +27,8 @@ const Main = ({ movieID }) => {
           if (response.Response === 'False') {
             setError(true);
           } else {
-            console.log('xxx', data);
             setMovieDetailData(data);
           }
-
           setLoading(false);
         })
         .catch(({ message }) => {

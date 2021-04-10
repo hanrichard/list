@@ -98,7 +98,7 @@ const Sidebar = ({
         closeIcon={<CloseIcon data-testid="close-icon" />}
         autoFocus />
 
-      {moviesResults?.length === 0 && !querykeyWord && !searchError && !loading && (
+      {moviesResults.length === 0 && !querykeyWord && !searchError && !loading && (
         <Typography>
           Start typing to search for movies
         </Typography>
@@ -109,7 +109,9 @@ const Sidebar = ({
         {searchError}
       </Typography>
       )}
+
       {loading && <Loader />}
+
       {!searchError && !loading && (
         <MovieList
           movies={moviesResults}
@@ -121,7 +123,7 @@ const Sidebar = ({
           data-testid="pagination-Id"
           onClickPagination={handleClickPagination}
           currentPage={queryPage}
-          totalPaginatedPages={totalPageResult} />
+          totalPaginatedPagesNum={totalPageResult} />
       )}
     </SidebarContainer>
   );
