@@ -1,8 +1,14 @@
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { API_KEY, axiosApi } from '../axios-api';
 import Loader from '../components/Loader';
+
+const MainContainer = styled.div`
+  margin-left: 50px;
+`;
 
 const Main = ({ movieID }) => {
   const [moviedDetailData, setMovieDetailData] = useState(null);
@@ -35,36 +41,71 @@ const Main = ({ movieID }) => {
 
   if (movieID === '') {
     return (
-      <div>
+      <MainContainer>
         <Typography variant="h4">
           Please select a movie
         </Typography>
-      </div>
+      </MainContainer>
     );
   }
 
   if (loading) {
     return (
-      <div>
+      <MainContainer>
         <Loader />
-      </div>
+      </MainContainer>
     );
   }
 
   if (error) {
     return (
-      <div>
+      <MainContainer>
         <Typography variant="h4">
           Error....
         </Typography>
-      </div>
+      </MainContainer>
     );
   }
 
+  console.log('xxx', moviedDetailData);
+
+  const {
+    Poster, Title, Plot, Language, Duration, Actor,
+  } = moviedDetailData;
+
   return (
-    <div>
-      {moviedDetailData?.Title}
-    </div>
+    <MainContainer>
+      {Title && (
+      <Typography variant="h4">
+        {Title}
+      </Typography>
+      )}
+      {Poster && (
+      <Box
+        component="img"
+        src={Poster} />
+      )}
+      {Plot && (
+      <Typography variant="h6">
+        {Plot}
+      </Typography>
+      )}
+      {Language && (
+      <Typography variant="h6">
+        {Language}
+      </Typography>
+      )}
+      {Duration && (
+      <Typography variant="h6">
+        {Duration}
+      </Typography>
+      )}
+      {Actor && (
+      <Typography variant="h6">
+        {Actor}
+      </Typography>
+      )}
+    </MainContainer>
   );
 };
 

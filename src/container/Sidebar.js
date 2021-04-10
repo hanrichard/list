@@ -4,12 +4,17 @@ import debounce from 'lodash/debounce';
 import SearchBar from 'material-ui-search-bar';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { API_KEY, axiosApi } from '../axios-api';
 import Loader from '../components/Loader';
 import MovieList from '../components/MovieList';
 import Pagination from '../components/Pagination';
 
 const listPerPage = 10;
+
+const SidebarContainer = styled.div`
+  width: 300px;
+`;
 
 const Sidebar = ({
   onMovieSelected, onKeywords,
@@ -83,7 +88,7 @@ const Sidebar = ({
   }, [querykeyWord]);
 
   return (
-    <div>
+    <SidebarContainer>
       <SearchBar
         data-testid="search-bar"
         value={querykeyWord}
@@ -118,7 +123,7 @@ const Sidebar = ({
           currentPage={queryPage}
           totalPaginatedPages={totalPageResult} />
       )}
-    </div>
+    </SidebarContainer>
   );
 };
 
