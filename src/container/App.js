@@ -49,6 +49,7 @@ const App = () => {
               totalResults,
             });
           }
+          setLoading(false);
         }).catch(({ message }) => {
           setSearchError(message);
           setLoading(false);
@@ -60,6 +61,7 @@ const App = () => {
     if (!querykeyWord) {
       setMovieData({ moviesResults: [], totalResults: 0 });
       setSearchError('');
+      setLoading(false);
     }
 
     setMovieID('');
@@ -69,6 +71,9 @@ const App = () => {
   return (
     <AppWrapper>
       <Sidebar
+        search={querykeyWord}
+        searchError={searchError}
+        loading={loading}
         onSearch={handleOnSearch}
         onCancel={handleOnCancel}
         querykeyWord={querykeyWord}
