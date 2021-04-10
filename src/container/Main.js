@@ -93,10 +93,10 @@ const Main = ({ movieID }) => {
         {moviedDetailData?.Language}
       </Typography>
       )}
-      {moviedDetailData?.Duration && (
+      {moviedDetailData?.Runtime && (
       <Typography variant="h6">
         Duration:
-        {moviedDetailData?.Duration}
+        {moviedDetailData?.Runtime}
       </Typography>
       )}
       {moviedDetailData?.Actors && (
