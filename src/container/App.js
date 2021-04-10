@@ -24,6 +24,7 @@ const App = () => {
   const handleOnSearch = (value) => {
     setQuerykeyWord(value);
   };
+
   const handleOnCancel = () => {
     setQuerykeyWord('');
     setMovieID('');
