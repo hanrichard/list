@@ -23,6 +23,10 @@ const App = () => {
     setQuerykeyWord('');
   };
 
+  const handleMovieSelected = (value) => {
+    setMovieID(value);
+  };
+
   useEffect(() => {
     setLoading(true);
     setSearchError(null);
@@ -65,7 +69,11 @@ const App = () => {
   return (
     <AppWrapper>
       <Sidebar
-        onSearch={handleOnSearch} onCancel={handleOnCancel} querykeyWord={querykeyWord}
+        onSearch={handleOnSearch}
+        onCancel={handleOnCancel}
+        querykeyWord={querykeyWord}
+        selectedMovieId={movieID}
+        onMovieSelected={handleMovieSelected}
         movies={movieData.moviesResults} />
       <Main movieID={movieID} />
     </AppWrapper>

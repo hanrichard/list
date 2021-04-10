@@ -5,7 +5,7 @@ import React from 'react';
 import MovieList from './MovieList';
 
 const Sidebar = ({
-  onSearch, onCancel, querykeyWord, movies,
+  onSearch, onCancel, querykeyWord, movies, onMovieSelected, selectedMovieId,
 }) => {
   console.log('sidebar');
   return (
@@ -18,7 +18,7 @@ const Sidebar = ({
         placeholder="Search here"
         closeIcon={<CloseIcon data-testid="close-icon" />}
         autoFocus />
-      <MovieList movies={movies} />
+      <MovieList movies={movies} onMovieSelected={onMovieSelected} selectedMovieId={selectedMovieId} />
     </div>
   );
 };

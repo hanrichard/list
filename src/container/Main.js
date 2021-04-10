@@ -31,6 +31,8 @@ const Main = ({ movieID }) => {
     }
   }, [movieID]);
 
+  console.log('xxx', moviedDetailData);
+
   return (
     <div>Main</div>
   );

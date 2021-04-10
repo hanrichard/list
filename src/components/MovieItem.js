@@ -1,11 +1,30 @@
+import Avatar from '@material-ui/core/Avatar';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
 import React from 'react';
 
-const MovieItem = () => {
+const MovieItem = ({ movie, selectedMovieId, onMovieSelected }) => {
   console.log('MovieItem');
+  const {
+    Title, imdbID, Poster, Year,
+  } = movie;
   return (
-    <div>
-      MovieItem
-    </div>
+    <ListItem
+      button
+      selected={imdbID === selectedMovieId}
+      onClick={() => {
+        onMovieSelected(imdbID);
+      }}
+      data-testid="movie-list-item">
+      <ListItemAvatar>
+        <Avatar
+          alt="Remy Sharp"
+          variant="square"
+          src={Poster} />
+      </ListItemAvatar>
+      <ListItemText primary={Title} secondary={Year} />
+    </ListItem>
   );
 };
 
