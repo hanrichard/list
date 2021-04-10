@@ -4,12 +4,13 @@ import debounce from 'lodash/debounce';
 import SearchBar from 'material-ui-search-bar';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Loader from './Loader';
 import MovieList from './MovieList';
 
 const Sidebar = ({
-  onSearch, onCancel, querykeyWord, movies, onMovieSelected, selectedMovieId, search, searchError, loading,
+  onSearch, onCancel, querykeyWord, movies, onMovieSelected, selectedMovieId, search, searchError, loading, showPagination, totalPageResult,
 }) => {
-  console.log('sidebar');
+  console.log('movies', movies);
   return (
     <div>
       <SearchBar
@@ -26,13 +27,19 @@ const Sidebar = ({
         {searchError}
       </Typography>
       )}
-      {loading && 'loading ...'}
+      {loading && <Loader />}
       {!searchError && !loading && (
         <MovieList
           movies={movies}
           selectedMovieId={selectedMovieId}
           onMovieSelected={onMovieSelected} />
       )}
+
+      <div>
+        {totalPageResult}
+        {' '}
+        {showPagination ? 'show' : 'hide'}
+      </div>
     </div>
   );
 };
@@ -47,6 +54,8 @@ Sidebar.defaultProps = {
   searchError: '',
   loading: false,
   querykeyWord: '',
+  showPagination: false,
+  totalPageResult: 0,
 };
 
 Sidebar.propTypes = {
@@ -66,6 +75,8 @@ Sidebar.propTypes = {
   searchError: PropTypes.string,
   loading: PropTypes.bool,
   querykeyWord: PropTypes.string,
+  showPagination: PropTypes.bool,
+  totalPageResult: PropTypes.number,
 };
 
 export default Sidebar;

@@ -16,6 +16,10 @@ const App = () => {
   const [queryPage, setQueryPage] = useState(1);
   const [movieID, setMovieID] = useState();
 
+  const listPerPage = 10;
+  const showPagination = movieData.totalResults > listPerPage;
+  const totalPageResult = Math.ceil(movieData.totalResults / listPerPage);
+
   const handleOnSearch = (value) => {
     setQuerykeyWord(value);
   };
@@ -79,7 +83,9 @@ const App = () => {
         querykeyWord={querykeyWord}
         selectedMovieId={movieID}
         onMovieSelected={handleMovieSelected}
-        movies={movieData.moviesResults} />
+        movies={movieData.moviesResults}
+        showPagination={showPagination}
+        totalPageResult={totalPageResult} />
       <Main movieID={movieID} />
     </AppWrapper>
   );

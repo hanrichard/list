@@ -37,15 +37,14 @@ MovieItem.defaultProps = {
 };
 
 MovieItem.propTypes = {
-  movie: PropTypes.arrayOf(
+  movie:
     PropTypes.shape({
       imdbID: PropTypes.string,
       Poster: PropTypes.string,
       Year: PropTypes.string,
       Title: PropTypes.string,
     }),
-  ),
-  selectedMovieId: '',
+  selectedMovieId: PropTypes.string,
   onMovieSelected: PropTypes.func,
 };
 

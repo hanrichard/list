@@ -2,7 +2,7 @@ import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { API_KEY, axiosApi } from '../axios-api';
-// import Spinner from "./Spinner";
+import Loader from '../components/Loader';
 
 const Main = ({ movieID }) => {
   const [moviedDetailData, setMovieDetailData] = useState(null);
@@ -46,7 +46,7 @@ const Main = ({ movieID }) => {
   if (loading) {
     return (
       <div>
-        loading...
+        <Loader />
       </div>
     );
   }
