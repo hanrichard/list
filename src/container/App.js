@@ -14,13 +14,14 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [querykeyWord, setQuerykeyWord] = useState();
   const [queryPage, setQueryPage] = useState(1);
-  const [movieID, setMovieID] = useState('tt4244162');
+  const [movieID, setMovieID] = useState();
 
   const handleOnSearch = (value) => {
     setQuerykeyWord(value);
   };
   const handleOnCancel = () => {
     setQuerykeyWord('');
+    setMovieID('');
   };
 
   const handleMovieSelected = (value) => {
@@ -61,10 +62,9 @@ const App = () => {
       setSearchError('');
     }
 
+    setMovieID('');
     setQueryPage(1);
   }, [querykeyWord]);
-
-  console.log('xxxx', movieData);
 
   return (
     <AppWrapper>

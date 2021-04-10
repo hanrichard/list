@@ -1,6 +1,8 @@
+import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { API_KEY, axiosApi } from '../axios-api';
+// import Spinner from "./Spinner";
 
 const Main = ({ movieID }) => {
   const [moviedDetailData, setMovieDetailData] = useState(null);
@@ -31,10 +33,38 @@ const Main = ({ movieID }) => {
     }
   }, [movieID]);
 
-  console.log('xxx', moviedDetailData);
+  if (movieID === '') {
+    return (
+      <div>
+        <Typography variant="h4">
+          Please select a movie
+        </Typography>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return (
+      <div>
+        loading...
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div>
+        <Typography variant="h4">
+          Error....
+        </Typography>
+      </div>
+    );
+  }
 
   return (
-    <div>Main</div>
+    <div>
+      {moviedDetailData?.Title}
+    </div>
   );
 };
 

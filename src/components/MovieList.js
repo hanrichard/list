@@ -3,11 +3,9 @@ import React from 'react';
 import MovieItem from './MovieItem';
 
 const MovieList = ({ movies, selectedMovieId, onMovieSelected }) => {
-  console.log('MovieList', movies);
-
   // eslint-disable-next-line react/prop-types
   const showMovieList = movies?.map((movie) => (
-    <MovieItem movie={movie} selectedMovieId={selectedMovieId} onMovieSelected={onMovieSelected} />
+    <MovieItem key={`${movie.imdbID}`} movie={movie} selectedMovieId={selectedMovieId} onMovieSelected={onMovieSelected} />
   ));
 
   return (

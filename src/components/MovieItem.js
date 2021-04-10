@@ -5,7 +5,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import React from 'react';
 
 const MovieItem = ({ movie, selectedMovieId, onMovieSelected }) => {
-  console.log('MovieItem');
   const {
     Title, imdbID, Poster, Year,
   } = movie;
