@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { API_KEY, axiosApi } from '../axios-api';
 import Loader from '../components/Loader';
 import MovieList from '../components/MovieList';
+import Pagination from '../components/Pagination';
 
 const listPerPage = 10;
 
@@ -34,8 +35,12 @@ const Sidebar = ({
     onKeywords('');
   };
 
-  const handleMovieSelected = (value) => {
-    onMovieSelected(value);
+  const handleMovieSelected = (id) => {
+    onMovieSelected(id);
+  };
+
+  const handleClickPagination = (page) => {
+    setQueryPage(page);
   };
 
   useEffect(() => {
@@ -106,11 +111,13 @@ const Sidebar = ({
           movieSelected={handleMovieSelected} />
       )}
 
-      <div>
-        {totalPageResult}
-        {' '}
-        {showPagination ? 'show' : 'hide'}
-      </div>
+      {showPagination && !searchError && (
+        <Pagination
+          data-testid="pagination-Id"
+          onClickPagination={handleClickPagination}
+          currentPage={queryPage}
+          totalPaginatedPages={totalPageResult} />
+      )}
     </div>
   );
 };
