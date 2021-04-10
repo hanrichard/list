@@ -13,7 +13,7 @@ import Pagination from '../components/Pagination';
 const listPerPage = 10;
 
 const SidebarContainer = styled.div`
-  width: 300px;
+  flex: 0 0 300px;
 `;
 
 const Sidebar = ({

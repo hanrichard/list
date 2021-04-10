@@ -27,6 +27,7 @@ const Main = ({ movieID }) => {
           if (response.Response === 'False') {
             setError(true);
           } else {
+            console.log('xxx', data);
             setMovieDetailData(data);
           }
 
@@ -67,42 +68,41 @@ const Main = ({ movieID }) => {
     );
   }
 
-  console.log('xxx', moviedDetailData);
-
-  const {
-    Poster, Title, Plot, Language, Duration, Actor,
-  } = moviedDetailData;
-
   return (
     <MainContainer>
-      {Title && (
+      {moviedDetailData?.Title && (
       <Typography variant="h4">
-        {Title}
+        Tile:
+        {moviedDetailData?.Title}
       </Typography>
       )}
-      {Poster && (
+      {moviedDetailData?.Poster && moviedDetailData?.Poster !== 'N/A' && (
       <Box
         component="img"
-        src={Poster} />
+        src={moviedDetailData?.Poster} />
       )}
-      {Plot && (
+      {moviedDetailData?.Plot && (
       <Typography variant="h6">
-        {Plot}
+        Plot:
+        {moviedDetailData?.Plot}
       </Typography>
       )}
-      {Language && (
+      {moviedDetailData?.Language && (
       <Typography variant="h6">
-        {Language}
+        Language:
+        {moviedDetailData?.Language}
       </Typography>
       )}
-      {Duration && (
+      {moviedDetailData?.Duration && (
       <Typography variant="h6">
-        {Duration}
+        Duration:
+        {moviedDetailData?.Duration}
       </Typography>
       )}
-      {Actor && (
+      {moviedDetailData?.Actors && (
       <Typography variant="h6">
-        {Actor}
+        Actors:
+        {moviedDetailData?.Actors}
       </Typography>
       )}
     </MainContainer>
