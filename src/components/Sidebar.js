@@ -8,19 +8,25 @@ import Loader from './Loader';
 import MovieList from './MovieList';
 
 const Sidebar = ({
-  onSearch, onCancel, querykeyWord, movies, onMovieSelected, selectedMovieId, search, searchError, loading, showPagination, totalPageResult,
+  onSearch, onCancel, movies, onMovieSelected, selectedMovieId, search, searchError, loading, showPagination, totalPageResult,
 }) => {
   console.log('movies', movies);
   return (
     <div>
       <SearchBar
         data-testid="search-bar"
-        value={querykeyWord}
+        value={search}
         onChange={debounce(onSearch, 300)}
         onCancelSearch={onCancel}
         placeholder="Search here"
         closeIcon={<CloseIcon data-testid="close-icon" />}
         autoFocus />
+
+      {movies.length === 0 && !search && !searchError && !loading && (
+        <Typography>
+          Start typing to search for movies
+        </Typography>
+      )}
 
       {search && searchError && (
       <Typography>
@@ -53,7 +59,6 @@ Sidebar.defaultProps = {
   onMovieSelected: () => {},
   searchError: '',
   loading: false,
-  querykeyWord: '',
   showPagination: false,
   totalPageResult: 0,
 };
@@ -74,7 +79,6 @@ Sidebar.propTypes = {
   onMovieSelected: PropTypes.func,
   searchError: PropTypes.string,
   loading: PropTypes.bool,
-  querykeyWord: PropTypes.string,
   showPagination: PropTypes.bool,
   totalPageResult: PropTypes.number,
 };

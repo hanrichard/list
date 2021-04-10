@@ -8,6 +8,8 @@ const AppWrapper = styled.div`
   display: flex;
 `;
 
+const listPerPage = 10;
+
 const App = () => {
   const [movieData, setMovieData] = useState({ moviesResults: [], totalResults: 0 });
   const [searchError, setSearchError] = useState(null);
@@ -16,7 +18,6 @@ const App = () => {
   const [queryPage, setQueryPage] = useState(1);
   const [movieID, setMovieID] = useState();
 
-  const listPerPage = 10;
   const showPagination = movieData.totalResults > listPerPage;
   const totalPageResult = Math.ceil(movieData.totalResults / listPerPage);
 
@@ -72,6 +73,8 @@ const App = () => {
     setQueryPage(1);
   }, [querykeyWord]);
 
+  console.log('xxxx totalResults', movieData.totalResults);
+
   return (
     <AppWrapper>
       <Sidebar
@@ -80,7 +83,6 @@ const App = () => {
         loading={loading}
         onSearch={handleOnSearch}
         onCancel={handleOnCancel}
-        querykeyWord={querykeyWord}
         selectedMovieId={movieID}
         onMovieSelected={handleMovieSelected}
         movies={movieData.moviesResults}
