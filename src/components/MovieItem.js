@@ -5,7 +5,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const MovieItem = ({ movie, selectedMovieId, onMovieSelected }) => {
+const MovieItem = ({ movie, selectedMovieId, movieSelected }) => {
   const {
     Title, imdbID, Poster, Year,
   } = movie;
@@ -14,7 +14,7 @@ const MovieItem = ({ movie, selectedMovieId, onMovieSelected }) => {
       button
       selected={imdbID === selectedMovieId}
       onClick={() => {
-        onMovieSelected(imdbID);
+        movieSelected(imdbID);
       }}
       data-testid="movie-list-item">
       <ListItemAvatar>
@@ -33,7 +33,7 @@ MovieItem.defaultProps = {
     Title: '', imdbID: '', Poster: '', Year: '',
   },
   selectedMovieId: '',
-  onMovieSelected: () => {},
+  movieSelected: () => {},
 };
 
 MovieItem.propTypes = {
@@ -45,7 +45,7 @@ MovieItem.propTypes = {
       Title: PropTypes.string,
     }),
   selectedMovieId: PropTypes.string,
-  onMovieSelected: PropTypes.func,
+  movieSelected: PropTypes.func,
 };
 
 export default MovieItem;
