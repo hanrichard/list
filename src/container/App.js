@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { API_KEY, axiosApi } from '../axios-api';
-import Main from '../components/Main';
 import Sidebar from '../components/Sidebar';
+import Main from './Main';
 
 const AppWrapper = styled.div`
-  display: flex
+  display: flex;
 `;
 
 const App = () => {
