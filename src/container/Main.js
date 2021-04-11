@@ -1,19 +1,23 @@
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { API_KEY, axiosApi } from '../axios-api';
 import Loader from '../components/Loader';
+import MovieListContext from '../movieList-context';
 
 const MainContainer = styled.div`
   margin-left: 50px;
 `;
 
-const Main = ({ movieID }) => {
+const Main = () => {
   const [moviedDetailData, setMovieDetailData] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { movieId } = useContext(MovieListContext);
+
+  const movieID = movieId;
 
   useEffect(() => {
     if (movieID) {

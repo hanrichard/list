@@ -1,7 +1,9 @@
+/* eslint-disable react/jsx-indent */
 import { render, screen } from '@testing-library/react';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import React from 'react';
+import MovieListContext from '../movieList-context';
 import Main from './Main';
 
 describe('<Main />', () => {
@@ -49,8 +51,12 @@ describe('<Main />', () => {
   it('should render movie title', async () => {
     const mock = new MockAdapter(axios);
     mock.onGet('testurl').reply(200, movie);
-
-    render(<Main movieID={movie.imdbID} />);
+    const value = {
+      movieId: 'tt0816692',
+    };
+    render(<MovieListContext.Provider value={value}>
+      <Main />
+           </MovieListContext.Provider>);
     const items = await screen.findAllByText(/Tile:Interstellar/);
     expect(items).toHaveLength(1);
   });

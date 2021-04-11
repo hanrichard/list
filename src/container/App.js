@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import MovieListContext from '../movieList-context';
 import Main from './Main';
 import Sidebar from './Sidebar';
 
@@ -8,18 +9,16 @@ const AppWrapper = styled.div`
 `;
 
 const App = () => {
-  const [movieID, setMovieID] = useState('');
-
-  const handleMovieSelected = (value) => {
-    setMovieID(value);
-  };
+  const [movieId, setMovieId] = useState('');
+  const value = { movieId, setMovieId };
 
   return (
-    <AppWrapper>
-      <Sidebar
-        onMovieSelected={handleMovieSelected} />
-      <Main movieID={movieID} />
-    </AppWrapper>
+    <MovieListContext.Provider value={value}>
+      <AppWrapper>
+        <Sidebar />
+        <Main />
+      </AppWrapper>
+    </MovieListContext.Provider>
   );
 };
 

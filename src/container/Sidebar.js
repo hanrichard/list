@@ -3,12 +3,13 @@ import CloseIcon from '@material-ui/icons/Clear';
 import debounce from 'lodash/debounce';
 import SearchBar from 'material-ui-search-bar';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { API_KEY, axiosApi } from '../axios-api';
 import Loader from '../components/Loader';
 import MovieList from '../components/MovieList';
 import Pagination from '../components/Pagination';
+import MovieListContext from '../movieList-context';
 
 const listPerPage = 10;
 
@@ -16,9 +17,8 @@ const SidebarContainer = styled.div`
   flex: 0 0 300px;
 `;
 
-const Sidebar = ({
-  onMovieSelected,
-}) => {
+const Sidebar = () => {
+  const { setMovieId } = useContext(MovieListContext);
   const [movieData, setMovieData] = useState({ moviesResults: [], moviesResultsAmount: 0 });
   const [searchError, setSearchError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -32,7 +32,7 @@ const Sidebar = ({
 
   const handleOnSearch = (value) => {
     setQuerykeyWord(value);
-    onMovieSelected('');
+    setMovieId('');
   };
 
   const handleOnCancel = () => {
@@ -40,7 +40,7 @@ const Sidebar = ({
   };
 
   const handleMovieSelected = (id) => {
-    onMovieSelected(id);
+    setMovieId(id);
   };
 
   const handleClickPagination = (page) => {
