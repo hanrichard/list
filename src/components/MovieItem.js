@@ -35,7 +35,7 @@ MovieItem.defaultProps = {
   movie: {
     Title: '', imdbID: '', Poster: '', Year: '',
   },
-  selectedMovieID: '',
+  selectedMovieID: () => {},
   movieSelected: () => {},
 };
 
@@ -47,7 +47,7 @@ MovieItem.propTypes = {
       Year: PropTypes.string,
       Title: PropTypes.string,
     }),
-  selectedMovieID: PropTypes.string,
+  selectedMovieID: PropTypes.func,
   movieSelected: PropTypes.func,
 };
 
