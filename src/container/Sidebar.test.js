@@ -1,4 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 import React from 'react';
 import Sidebar from './Sidebar';
 
@@ -103,7 +105,8 @@ describe('<Sidebar />', () => {
   ];
   it('should render the default text', async () => {
     const selectedMovies = movies.slice(0, 1);
-    fetch.mockResponseOnce(JSON.stringify(selectedMovies));
+    const mock = new MockAdapter(axios);
+    mock.onGet('testurl').reply(200, selectedMovies);
 
     render(
       <Sidebar onMovieSelected={jest.fn()} onKeywords={jest.fn()} />,
@@ -113,8 +116,9 @@ describe('<Sidebar />', () => {
   });
 
   it('should not render pagination', async () => {
+    const mock = new MockAdapter(axios);
     const selectedMovies = movies.slice(0, 1);
-    fetch.mockResponseOnce(JSON.stringify(selectedMovies));
+    mock.onGet('testurl').reply(200, selectedMovies);
 
     const { queryAllByTestId } = render(
       <Sidebar onMovieSelected={jest.fn()} onKeywords={jest.fn()} />,
@@ -124,7 +128,8 @@ describe('<Sidebar />', () => {
   });
 
   it('should render pagination', async () => {
-    fetch.mockResponseOnce(JSON.stringify(movies));
+    const mock = new MockAdapter(axios);
+    mock.onGet('testurl').reply(200, movies);
 
     const { getByPlaceholderText } = render(
       <Sidebar onMovieSelected={jest.fn()} onKeywords={jest.fn()} />,

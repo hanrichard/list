@@ -1,4 +1,6 @@
 import { render, screen } from '@testing-library/react';
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 import React from 'react';
 import Main from './Main';
 
@@ -44,12 +46,9 @@ describe('<Main />', () => {
     Response: 'True',
   };
 
-  beforeEach(() => {
-    fetch.resetMocks();
-  });
-
   it('should render movie title', async () => {
-    fetch.mockResponseOnce(JSON.stringify(movie));
+    const mock = new MockAdapter(axios);
+    mock.onGet('https://us-central1-hutoma-backend.cloudfunctions.net/chat').reply(200, movie);
 
     render(<Main movieID={movie.imdbID} />);
     const items = await screen.findAllByText(/Tile:Interstellar/);
