@@ -115,6 +115,7 @@ const Sidebar = () => {
       {!searchError && !loading && (
         <MovieList
           movies={moviesResults}
+          selectedMovieID={handleMovieSelected}
           movieSelected={handleMovieSelected} />
       )}
 
