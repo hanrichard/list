@@ -9,13 +9,16 @@ const MovieItem = ({ movie, selectedMovieId, movieSelected }) => {
   const {
     Title, imdbID, Poster, Year,
   } = movie;
+
+  const handleSelectId = () => {
+    movieSelected(imdbID);
+  };
+
   return (
     <ListItem
       button
       selected={imdbID === selectedMovieId}
-      onClick={() => {
-        movieSelected(imdbID);
-      }}
+      onClick={handleSelectId}
       data-testid="movie-list-item">
       <ListItemAvatar>
         <Avatar

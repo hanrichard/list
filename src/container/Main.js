@@ -14,7 +14,6 @@ const Main = ({ movieID }) => {
   const [moviedDetailData, setMovieDetailData] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  // const movieID = 'tt0816692';
 
   useEffect(() => {
     if (movieID) {

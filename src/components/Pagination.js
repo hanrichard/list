@@ -27,9 +27,7 @@ export default function Pagination({
         <Grid item xs>
           <ArrowLeftIcon
             data-testid="arrow-left-pagination"
-            onClick={
-              () => handlePreviousClick()
-            } />
+            onClick={handlePreviousClick} />
         </Grid>
         <Grid item xs={8}>
           <Typography variant="h4">
@@ -43,9 +41,7 @@ export default function Pagination({
         <Grid item xs>
           <ArrowRightIcon
             data-testid="arrow-right-pagination"
-            onClick={
-              () => handleNextClick()
-            } />
+            onClick={handleNextClick} />
         </Grid>
       </Grid>
     </div>
