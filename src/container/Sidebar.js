@@ -37,6 +37,7 @@ const Sidebar = () => {
 
   const handleOnCancel = () => {
     setQuerykeyWord('');
+    setMovieId('');
   };
 
   const handleMovieSelected = (id) => {
@@ -45,6 +46,7 @@ const Sidebar = () => {
 
   const handleClickPagination = (page) => {
     setQueryPage(page);
+    setMovieId('');
   };
 
   useEffect(() => {
