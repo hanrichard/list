@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Main from './Main';
 import Sidebar from './Sidebar';
@@ -9,24 +9,15 @@ const AppWrapper = styled.div`
 
 const App = () => {
   const [movieID, setMovieID] = useState('');
-  const [key, setKey] = useState('');
 
   const handleMovieSelected = (value) => {
     setMovieID(value);
   };
 
-  const handleKeywordsChange = (value) => {
-    setKey(value);
-  };
-
-  useEffect(() => {
-    setMovieID('');
-  }, [key]);
-
   return (
     <AppWrapper>
       <Sidebar
-        onMovieSelected={handleMovieSelected} onKeywords={handleKeywordsChange} />
+        onMovieSelected={handleMovieSelected} />
       <Main movieID={movieID} />
     </AppWrapper>
   );

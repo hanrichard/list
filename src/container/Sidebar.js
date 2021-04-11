@@ -17,7 +17,7 @@ const SidebarContainer = styled.div`
 `;
 
 const Sidebar = ({
-  onMovieSelected, onKeywords,
+  onMovieSelected,
 }) => {
   const [movieData, setMovieData] = useState({ moviesResults: [], moviesResultsAmount: 0 });
   const [searchError, setSearchError] = useState(null);
@@ -32,12 +32,11 @@ const Sidebar = ({
 
   const handleOnSearch = (value) => {
     setQuerykeyWord(value);
-    onKeywords(value);
+    onMovieSelected('');
   };
 
   const handleOnCancel = () => {
     setQuerykeyWord('');
-    onKeywords('');
   };
 
   const handleMovieSelected = (id) => {
