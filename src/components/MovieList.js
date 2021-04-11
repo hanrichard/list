@@ -8,7 +8,7 @@ const MovieList = ({ movies, selectedMovieId, movieSelected }) => {
   ));
 
   return (
-    <List>
+    <List data-testid="list">
       {showMovieList}
     </List>
   );

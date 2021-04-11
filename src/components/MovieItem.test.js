@@ -1,10 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
 import React from 'react';
-import Main from './Main';
+import MovieItem from './MovieItem';
 
-describe('<Main />', () => {
+describe('<MovieItem />', () => {
   const movie = {
     Title: 'Interstellar',
     Year: '2014',
@@ -46,12 +44,10 @@ describe('<Main />', () => {
     Response: 'True',
   };
 
-  it('should render movie title', async () => {
-    const mock = new MockAdapter(axios);
-    mock.onGet('testurl').reply(200, movie);
-
-    render(<Main movieID={movie.imdbID} />);
-    const items = await screen.findAllByText(/Tile:Interstellar/);
+  it('should render movie item', async () => {
+    render(<MovieItem
+      movie={movie} selectedMovieId="" movieSelected={jest.fn()} />);
+    const items = await screen.findAllByText(/Interstellar/);
     expect(items).toHaveLength(1);
   });
 });

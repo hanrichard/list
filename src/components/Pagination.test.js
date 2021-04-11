@@ -3,16 +3,6 @@ import React from 'react';
 import Pagination from './Pagination';
 
 describe('<Pagination />', () => {
-  it('should render accordingly', () => {
-    const { asFragment } = render(
-      <Pagination
-        onClickPagination={jest.fn()}
-        currentPage={1}
-        totalPaginatedPagesNum={10} />,
-    );
-    expect(asFragment()).toMatchSnapshot();
-  });
-
   it('should call onClickPagination when clicking on the next pagination arrow', () => {
     const mockFn = jest.fn();
     const { getByTestId } = render(
