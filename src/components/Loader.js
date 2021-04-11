@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 `;
 const Loader = () => (
   <Wrapper>
-    <CircularProgress size={60} />
+    <CircularProgress size={60} data-testid="loader" />
   </Wrapper>
 );
 

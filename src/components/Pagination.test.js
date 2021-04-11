@@ -3,7 +3,13 @@ import React from 'react';
 import Pagination from './Pagination';
 
 describe('<Pagination />', () => {
-  it('should call onClickPagination when clicking on the next pagination arrow', () => {
+  it('should render Pagination', async () => {
+    const { getByTestId } = render(<Pagination />);
+    const items = await getByTestId('pagination');
+    expect(items).toBeTruthy();
+  });
+
+  it('should call onClickPagination when clicking on the next page', () => {
     const mockFn = jest.fn();
     const { getByTestId } = render(
       <Pagination
@@ -13,13 +19,11 @@ describe('<Pagination />', () => {
     );
 
     const rightArrowPagination = getByTestId('arrow-right-pagination');
-
-    // Click next page
     fireEvent.click(rightArrowPagination);
     expect(mockFn).toBeCalledWith(2);
   });
 
-  it('should call onClickPagination when clicking on the previous pagination arrow', () => {
+  it('should call onClickPagination when clicking on the prev page arrow', () => {
     const mockFn = jest.fn();
     const { getByTestId } = render(
       <Pagination
@@ -29,8 +33,6 @@ describe('<Pagination />', () => {
     );
 
     const leftArrowPagination = getByTestId('arrow-left-pagination');
-
-    // Click previous page
     fireEvent.click(leftArrowPagination);
     expect(mockFn).toBeCalledWith(1);
   });
