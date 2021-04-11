@@ -14,6 +14,7 @@ const Main = ({ movieID }) => {
   const [moviedDetailData, setMovieDetailData] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  // const movieID = 'tt0816692';
 
   useEffect(() => {
     if (movieID) {
@@ -23,8 +24,8 @@ const Main = ({ movieID }) => {
 
       axiosApi.get(`?i=${movieID}&apikey=${API_KEY}&plot=full`)
         .then((response) => {
-          const { data } = response;
-          if (response.Response === 'False') {
+          const { data, Response } = response;
+          if (Response === 'False') {
             setError(true);
           } else {
             setMovieDetailData(data);
