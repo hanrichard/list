@@ -9,8 +9,8 @@ const AppWrapper = styled.div`
 `;
 
 const App = () => {
-  const [movieId, setMovieId] = useState('');
-  const value = { movieId, setMovieId };
+  const [movieID, setMovieID] = useState('');
+  const value = { movieID, setMovieID };
 
   return (
     <MovieListContext.Provider value={value}>

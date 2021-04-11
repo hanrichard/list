@@ -52,7 +52,7 @@ describe('<Main />', () => {
     const mock = new MockAdapter(axios);
     mock.onGet('testurl').reply(200, movie);
     const value = {
-      movieId: 'tt0816692',
+      movieID: 'tt0816692',
     };
     render(<MovieListContext.Provider value={value}>
       <Main />

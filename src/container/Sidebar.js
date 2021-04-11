@@ -2,7 +2,6 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Clear';
 import debounce from 'lodash/debounce';
 import SearchBar from 'material-ui-search-bar';
-import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { API_KEY, axiosApi } from '../axios-api';
@@ -18,7 +17,7 @@ const SidebarContainer = styled.div`
 `;
 
 const Sidebar = () => {
-  const { setMovieId } = useContext(MovieListContext);
+  const { setMovieID } = useContext(MovieListContext);
   const [movieData, setMovieData] = useState({ moviesResults: [], moviesResultsAmount: 0 });
   const [searchError, setSearchError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -32,21 +31,21 @@ const Sidebar = () => {
 
   const handleOnSearch = (value) => {
     setQuerykeyWord(value);
-    setMovieId('');
+    setMovieID('');
   };
 
   const handleOnCancel = () => {
     setQuerykeyWord('');
-    setMovieId('');
+    setMovieID('');
   };
 
   const handleMovieSelected = (id) => {
-    setMovieId(id);
+    setMovieID(id);
   };
 
   const handleClickPagination = (page) => {
     setQueryPage(page);
-    setMovieId('');
+    setMovieID('');
   };
 
   useEffect(() => {
@@ -128,16 +127,6 @@ const Sidebar = () => {
       )}
     </SidebarContainer>
   );
-};
-
-Sidebar.defaultProps = {
-  onKeywords: () => {},
-  onMovieSelected: () => {},
-};
-
-Sidebar.propTypes = {
-  onMovieSelected: PropTypes.func,
-  onKeywords: PropTypes.func,
 };
 
 export default Sidebar;

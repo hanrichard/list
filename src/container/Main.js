@@ -1,6 +1,5 @@
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { API_KEY, axiosApi } from '../axios-api';
@@ -15,9 +14,7 @@ const Main = () => {
   const [moviedDetailData, setMovieDetailData] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { movieId } = useContext(MovieListContext);
-
-  const movieID = movieId;
+  const { movieID } = useContext(MovieListContext);
 
   useEffect(() => {
     if (movieID) {
@@ -109,14 +106,6 @@ const Main = () => {
       )}
     </MainContainer>
   );
-};
-
-Main.defaultProps = {
-  movieID: '',
-};
-
-Main.propTypes = {
-  movieID: PropTypes.string,
 };
 
 export default Main;
